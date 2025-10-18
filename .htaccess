@@ -1,0 +1,14 @@
+# Route all traffic from the project root to the public/ directory
+<IfModule mod_rewrite.c>
+    Options +FollowSymlinks
+    RewriteEngine On
+    RewriteBase /midtermnabale/
+
+    # If the request is for the root, serve public/index.php
+    RewriteRule ^$ public/index.php [L]
+
+    # Otherwise, if not a real file or directory, route into public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
